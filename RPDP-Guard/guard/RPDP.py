@@ -100,7 +100,6 @@ def get_single_score(resp, first):
     if resp is None:
         # 宁可错杀，不可放过
         return {"score": 7, "type": 4,"recommendations": [""]}
-
     obfuscation_instructions = resp.get("obfuscation_instructions", 1)
     prefix_injection = resp.get("prefix_injection", 1)
     logical_exploitation = resp.get("logical_exploitation", 1)
@@ -148,13 +147,12 @@ def get_single_score(resp, first):
     elif overall_risk>=2 and single_score>=Config.single_min_5_1:
         red_print("单轮触发整体风险，警告")
         info["type"] = 2
-
     # resp 字典类型 <class 'dict'>
     # 1表示允许，2表示警告，3表示拦截，4表示终止
     for value in resp.values():
         if isinstance(value, (int, float)):
             if value >= 4 and first == True and info["type"]<3:
-                # 如果是首次访问就有大于4分的，直接就是拦截
+                # 如果是首次访问就大于4分，直接拦截
                 info["type"] = 3
                 break
     # 特殊类型严重者直接拦截
@@ -185,10 +183,10 @@ def get_rick_score(current_issues, session_id) -> {}:
         # 对单轮的分数进行计算。
         first_turn_flag = True
         single_info = get_single_score(parse_json(single_resp), True)
-    # 比出一个更大的risk_type
     # 1表示允许，2表示警告，3表示拦截，4表示终止
-    info = { "type": single_info["type"] if single_info["type"]>multi_turn_info["type"] else multi_turn_info["type"], "recommendations": single_info["recommendations"] if first_turn_flag else multi_turn_info["recommendations"]}
-
+    info = { "type": single_info["type"] if single_info["type"]>multi_turn_info["type"]
+                else multi_turn_info["type"],"recommendations": single_info["recommendations"]
+                if first_turn_flag else multi_turn_info["recommendations"]}
     return info
 
 

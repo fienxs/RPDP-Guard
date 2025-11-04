@@ -24,10 +24,11 @@ for row_index, row_values in enumerate(dm_data.values):
     problems_result_collection=[]
     for column_index, cell_value in enumerate(row_values):
         if not pd.isna(cell_value):
-            print("╔" + "═" * 80 + "╗")
             print(f"║--- 正在处理第{row_index+1}行,第{column_index+1}列数据 ,共有{len(dm_data)}条数据。---")
+            print("╔" + "═" * 300 + "╗")
+            # print(f"║--- 正在处理第{row_index+1}行,第{column_index+1}列数据 ,共有{len(dm_data)}条数据。---")
             print(f"║问题内容为：{cell_value}")
-            print("╚" + "═" * 80 + "╝")
+            print("╚" + "═" * 300 + "╝")
             risk_level=1
             #默认正常系统提示词
             system_prompt=get_allow_system_prompt()

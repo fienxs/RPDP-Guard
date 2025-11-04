@@ -93,7 +93,6 @@ def chat_completions():
         user_message = ""
         # 先尝试根据消息查找已存在的会话
         session_id = find_existing_session(messages)
-
         # 如果没有找到，使用提供的session_id或生成新的
         if not session_id:
             timestamp = int(time.time() * 1000)

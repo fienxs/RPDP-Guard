@@ -6,11 +6,11 @@ class Config:
     #防御状态
     defense_state=True
     #测试文件名称
-    fileName = ''
+    fileName = 'mul_test.csv'
     #无防御保存文件名称
-    defenceless_fileName = ''
+    defenceless_fileName = 'defenceless_mul_test.csv'
     #有防御保存文件名称
-    defense_fileName = ''
+    defense_fileName = 'defense_mul_test.csv'
     #权重系数
     #多轮系数
     adversarial_accumulation_weight = 1.5
@@ -49,16 +49,16 @@ class Config:
                          }
 
     allow_model_info={
-        'temperature': 0.0,
-        'top_p': 0.0,
+        'temperature': 0.9,
+        'top_p': 0.9,
     }
     warn_model_info = {
-        'temperature': 0.0,
-        'top_p': 0.0,
+        'temperature': 0.3,
+        'top_p': 0.5,
     }
     interception_model_info={
-        'temperature': 0.0,
-        'top_p': 0.0,
+        'temperature': 0.3,
+        'top_p': 0.5,
     }
 
 
